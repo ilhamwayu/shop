@@ -1,0 +1,127 @@
+.product-header{
+    display: flex;
+    padding-top: 3rem;
+    justify-content: center;
+    width: 100%;
+    height: 10rem;
+    background-color:#dddbdb;
+}
+
+.main-product{
+    padding-top: 1.8rem;
+    padding-left: 1.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.list-product{
+    border: 1px solid #dddbdb;
+    height: 55vh;
+    width: 33.3%;
+    padding-bottom: 1rem;
+
+}
+
+.img{
+    padding-left: 1px;
+    padding-top: 1px;
+    height: 14rem;
+    width: 20.1rem;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.ngx-pagination {
+    padding: 0.1875rem 0.625rem;
+    background: #ff4081;
+    color: #fefefe;
+    cursor: default;
+}
+
+.label-name{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    text-transform: capitalize;
+    font-family: 'Barlow', sans-serif;
+    color: black;
+}
+
+.category-name{
+    display: flex;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+    color: #969595;
+}
+
+.rating-product{ 
+    display: flex;
+    justify-content: center;
+    color: #f7cb2c;
+}
+
+.price{
+    display: flex;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+    color: #ff4081;
+}
+
+.main-filter{
+    border-left: 1px solid #dddbdb;
+    min-height: 100vh;
+}
+
+.title{
+    border-bottom: 1px solid #dddbdb;
+    height: 50px;
+}
+
+.label-filter{
+    font-family: 'Barlow', sans-serif;
+    color: #7c7c7c;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.inp-filter{
+    border-bottom: 1px solid #dddbdb;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group{
+    padding-top: 10px;
+    height: 10px;
+    padding-left: 20px;
+
+}
+
+.form-control{
+    border: 0;
+    outline: 0;    
+}
+
+.conten-filter{
+    height: 40vh;
+    border-bottom: 1px solid #dddbdb;
+}
+
+.list-category{
+    display: flex;
+    font-family: 'Barlow', sans-serif;
+    color: #7c7c7c;
+    padding-left: 2rem;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.list-category:hover{
+    color: #ff4081;
+}
