@@ -9,20 +9,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsComponent } from './pages/products/products.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { ProductsDetailComponent } from './pages/products-detail/products-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ProductsDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

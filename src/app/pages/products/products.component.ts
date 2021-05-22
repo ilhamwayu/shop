@@ -14,15 +14,14 @@ export class ProductsComponent implements OnInit {
   data: any = [];
   p: Number = 1;
   count: Number = 9;
-
-  category:string = "";
-  size:number = 0;
+  category: string = "";
+  size: number = 0;
 
   constructor(
     private serviceProducts: ProductsService,
     config: NgbRatingConfig,
-    private routerActive:ActivatedRoute,
-    private router:Router
+    private routerActive: ActivatedRoute,
+    private router: Router
   ) {
     config.max = 5;
     config.readonly = true;
@@ -32,27 +31,28 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  goProducts(party) {
-    this.router.navigate([''], { queryParams: { category: party } });
+  filterCategory(category) {
+    this.router.navigate([''], { queryParams: { category: category } });
 
-    this.routerActive.queryParams.subscribe(result => {
-        this.category = result.category
+    this.routerActive.queryParams.subscribe(
+      result => {
+        this.category = result.category;
       }
     );
 
-    let data = {
-      category:this.category
-    }
-
-    this.serviceProducts.filterProducts(data).subscribe(
-      data => {
-        this.data = data
-        alert("success");
-      },
-      error => {
-        alert("error");
+    this.serviceProducts.getProducts().subscribe(
+      result => {
+        this.data = result;
+        this.data = (this.category) ?
+          this.data.filter(p => {
+            return p.category === this.category;
+          }) : this.data;
       }
     );
+  }
+
+  detail(slug) {
+    this.router.navigate(['productsDetail/', slug]);
   }
 
   getProducts() {

@@ -1,0 +1,58 @@
+<div class="box-pages">
+    <div class="details-header">
+        <h3 class="products-name">{{name}}</h3>
+    </div>
+
+    <div class="main-details">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box-img">
+                    <img src="http://angushop.anurdin.net/{{img}}" class="img-detail" alt="">
+                </div>
+                <div class="box-galery">
+                    <div *ngFor="let image of galery">
+                        <img *ngIf="image.images !== 'http://via.placeholder.com/640x500'" class="img-galery"
+                            src="http://angushop.anurdin.net/{{image.images}}" alt="">
+                        <img *ngIf="image.images == 'http://via.placeholder.com/640x500'" class="img-galery"
+                            src="{{image.images}}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="header-descrip">
+                    <label class="price">{{price | currency: 'USD'}}</label>
+                    <div class="wishlist">
+                        <label class="icon-wishlist">
+                            <li style="padding-right: 5px;" class="fa fa-heart"></li> Add to Wishlist
+                        </label><br>
+                        <label class="icon-wishlist">
+                            <li style="padding-right: 7px;" class="fa fa-plus"></li> Compare
+                        </label>
+                    </div>
+                </div>
+                <label class="btn-main">
+                    <li style="padding-top:4px; padding-right:5px" class="fa fa-cart-plus"></li> Add to cart(0)
+                </label>
+                <table class="table">
+                    <tr>
+                        <td>Stock</td>
+                        <td>{{stock}}</td>
+                    </tr>
+                    <tr>
+                        <td>Color</td>
+                        <td>{{color}}</td>
+                    </tr>
+                    <tr>
+                        <td>Size</td>
+                        <td>{{size}}</td>
+                    </tr>
+                </table>
+                <h3>DESCRIPTION</h3>
+                <p class="text-description">{{description}}</p>
+                <div class="rating-product">
+                    <ngb-rating [rate]="3"></ngb-rating>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
