@@ -4,7 +4,6 @@
         <div class="main-product">
             <div *ngFor=" let v of data | paginate: { itemsPerPage: count, currentPage: p }" class="list-product">
                 <img class="img" src="http://angushop.anurdin.net/{{v.image}}" alt="">
-                <div class=""></div>
                 <label class="label-name">{{v.productName}}</label>
                 <span class="category-name">{{v.category}}</span>
                 <div class="rating-product">
