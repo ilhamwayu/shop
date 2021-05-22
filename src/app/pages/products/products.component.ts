@@ -12,16 +12,17 @@ import { filter } from 'rxjs/operators';
 })
 export class ProductsComponent implements OnInit {
   data: any = [];
-  p: Number = 1;
-  count: Number = 9;
+  p: number = 1;
+  count: number = 9;
   category: string = "";
   size: number = 0;
+  search: string = "";
 
   constructor(
     private serviceProducts: ProductsService,
     config: NgbRatingConfig,
-    private routerActive: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private routing: ActivatedRoute
   ) {
     config.max = 5;
     config.readonly = true;
@@ -29,24 +30,37 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+    this.filterProducts();
   }
 
-  filterCategory(category) {
-    this.router.navigate([''], { queryParams: { category: category } });
+  searchProducts(event, size) {
+    this.router.navigate([''], { queryParams: { category: event, search: this.search, size: size } });
 
-    this.routerActive.queryParams.subscribe(
-      result => {
-        this.category = result.category;
-      }
-    );
+    this.routing.queryParams.subscribe(
+        result => {
+          this.category = result.category;
+          this.size = result.size;
+        }
+      );
+
+      this.filterProducts();
+  }
+
+  filterProducts() {
+
+    // this.routing.queryParams.subscribe(
+    //   result => {
+    //     this.category = result.category;
+    //   }
+    // );
 
     this.serviceProducts.getProducts().subscribe(
       result => {
         this.data = result;
-        this.data = (this.category) ?
-          this.data.filter(p => {
-            return p.category === this.category;
-          }) : this.data;
+        this.data = (this.category) ? this.data.filter(p => { return p.category === this.category;}) : this.data;
+        this.data = (this.search) ? this.data.filter(p => { return p.productName.includes(this.search);}) : this.data;
+        this.data = (this.size) ? this.data.filter(p => { return p.size == this.size;}) : this.data;
+        console.log(this.data);
       }
     );
   }

@@ -9,7 +9,7 @@
 
 .list-product{
     border: 1px solid #dddbdb;
-    height: 55vh;
+    height: 58vh;
     width: 33.3%;
     padding-bottom: 1rem;
 
@@ -135,4 +135,22 @@
     color: #969595;
     padding-top: 4px;
     padding-left: 10px;
+}
+
+.box-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-main{
+    background-color: #e70052;
+    border-color: #e70052;
+    border-radius: 3px;
+    height: 2rem;
+    width: 15%;
+    display: flex;
+    padding-top: 7px;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffffff;
 }
