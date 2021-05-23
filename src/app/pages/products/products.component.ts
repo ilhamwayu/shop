@@ -3,6 +3,7 @@ import { ProductsService } from './products.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-products',
@@ -12,11 +13,16 @@ import { filter } from 'rxjs/operators';
 })
 export class ProductsComponent implements OnInit {
   data: any = [];
+  allData: any = [];
   p: number = 1;
   count: number = 9;
-  category: string = "";
   size: number = 0;
+  category: string = "";
   search: string = "";
+
+  sizeFilterValue: any = [];
+  searchFilterValue: string = "";
+  categoryFitlerValue: string = "";
 
   constructor(
     private serviceProducts: ProductsService,
@@ -30,39 +36,57 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    this.filterProducts();
   }
 
-  searchProducts(event, size) {
-    this.router.navigate([''], { queryParams: { category: event, search: this.search, size: size } });
-
-    this.routing.queryParams.subscribe(
-        result => {
-          this.category = result.category;
-          this.size = result.size;
-        }
-      );
-
-      this.filterProducts();
+  sizeFilter(value) {
+    var check = this.sizeFilterValue.includes(value);
+    if (!check) {
+      this.sizeFilterValue.push(value);
+    } else {
+      var removeResult = this.sizeFilterValue.filter(function (e) { return e !== value });
+      this.sizeFilterValue = removeResult;
+    }
+    this.setQueryParams();
   }
 
-  filterProducts() {
+  searchFilter(event) {
+    this.searchFilterValue = event.target.value;
+    this.setQueryParams();
+  }
 
-    // this.routing.queryParams.subscribe(
-    //   result => {
-    //     this.category = result.category;
-    //   }
-    // );
+  categoryFilter(value) {
+    this.categoryFitlerValue = value;
+    this.setQueryParams();
+  }
 
-    this.serviceProducts.getProducts().subscribe(
-      result => {
-        this.data = result;
-        this.data = (this.category) ? this.data.filter(p => { return p.category === this.category;}) : this.data;
-        this.data = (this.search) ? this.data.filter(p => { return p.productName.includes(this.search);}) : this.data;
-        this.data = (this.size) ? this.data.filter(p => { return p.size == this.size;}) : this.data;
-        console.log(this.data);
-      }
-    );
+  setQueryParams() {
+    var params = {}
+
+    if (this.searchFilterValue) {
+      params['search'] = this.searchFilterValue;
+    }
+
+    if (this.categoryFitlerValue) {
+      params['category'] = this.categoryFitlerValue;
+    }
+
+    if (this.sizeFilterValue.length > 0) {
+      var sizeParams = this.sizeFilterValue.join("-");
+      params['size'] = sizeParams;
+    }
+
+    console.log(params)
+    this.router.navigate([''], { queryParams: params });
+    this.filterData();
+  }
+
+  filterData() {
+    this.data = this.allData.filter(p => {
+      var search = this.searchFilterValue ? p.productName.includes(this.searchFilterValue) : p.productName;
+      var size = this.sizeFilterValue.length > 0 ? this.sizeFilterValue.indexOf(p.size) >= 0 : p.size;
+      var category = this.categoryFitlerValue ? p.category == this.categoryFitlerValue : p.category;
+      return search && size && category;
+    })
   }
 
   detail(slug) {
@@ -73,6 +97,7 @@ export class ProductsComponent implements OnInit {
     this.serviceProducts.getProducts().subscribe(
       result => {
         this.data = result;
+        this.allData = result;
       },
       error => {
         alert("load data failed");
