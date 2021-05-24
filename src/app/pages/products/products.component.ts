@@ -74,8 +74,6 @@ export class ProductsComponent implements OnInit {
       var sizeParams = this.filterSizeValue.join("-");
       params['size'] = sizeParams;
     }
-
-    console.log(params)
     this.router.navigate([''], { queryParams: params });
     this.filterData();
   }
