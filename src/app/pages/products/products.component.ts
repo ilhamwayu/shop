@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from './products.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-products',
