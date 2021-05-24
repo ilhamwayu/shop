@@ -28,28 +28,28 @@
             </div>
             <div class="inp-filter">
                 <div class="form-group">
-                    <input type="text" (keyup)="searchFilter($event)" name="search" class="form-control" placeholder="Search Product..">
+                    <input type="text" (keyup)="filtersearch($event)" name="search" class="form-control" placeholder="Search Product..">
                 </div>
             </div>
             <div class="conten-filter">
                 <h6 class="label-filter">Category</h6>
-                <label (click)="categoryFilter('')" class="list-category">All</label>
-                <label (click)="categoryFilter('party')"  class="list-category">Party</label>
-                <label (click)="categoryFilter('natural')" class="list-category">Natural</label>
-                <label (click)="categoryFilter('cute alay banget')" class="list-category">Cute Alay Banget</label>
-                <label (click)="categoryFilter('woman')" class="list-category">Woman</label>
+                <label (click)="filterCategory('')" class="list-category">All</label>
+                <label (click)="filterCategory('party')"  class="list-category">Party</label>
+                <label (click)="filterCategory('natural')" class="list-category">Natural</label>
+                <label (click)="filterCategory('cute alay banget')" class="list-category">Cute Alay Banget</label>
+                <label (click)="filterCategory('woman')" class="list-category">Woman</label>
             </div>
             <div class="conten-filter">
                 <h6 class="label-filter">Size</h6>
                 <div class="checkbox">
-                    <input (click)="sizeFilter(33)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">33</span>
-                    <input (click)="sizeFilter(34)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">34</span>
-                    <input (click)="sizeFilter(35)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">35</span>
+                    <input (click)="filterSize(33)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">33</span>
+                    <input (click)="filterSize(34)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">34</span>
+                    <input (click)="filterSize(35)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">35</span>
                 </div>
                 <div class="checkbox">
-                    <input (click)="sizeFilter(36)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">36</span>
-                    <input (click)="sizeFilter(37)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">37</span>
-                    <input (click)="sizeFilter(38)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">38</span>
+                    <input (click)="filterSize(36)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">36</span>
+                    <input (click)="filterSize(37)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">37</span>
+                    <input (click)="filterSize(38)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">38</span>
                 </div>
             </div>
         </div>

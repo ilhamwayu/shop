@@ -20,9 +20,9 @@ export class ProductsComponent implements OnInit {
   category: string = "";
   search: string = "";
 
-  sizeFilterValue: any = [];
-  searchFilterValue: string = "";
-  categoryFitlerValue: string = "";
+  filterSizeValue: any = [];
+  filterSearchValue: string = "";
+  filterCategoryValue: string = "";
 
   constructor(
     private serviceProducts: ProductsService,
@@ -38,40 +38,40 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  sizeFilter(value) {
-    var check = this.sizeFilterValue.includes(value);
+  filtersearch(event) {
+    this.filterSearchValue = event.target.value;
+    this.setQueryParams();
+  }
+
+  filterCategory(value) {
+    this.filterCategoryValue = value;
+    this.setQueryParams();
+  }
+
+  filterSize(value) {
+    var check = this.filterSizeValue.includes(value);
     if (!check) {
-      this.sizeFilterValue.push(value);
+      this.filterSizeValue.push(value);
     } else {
-      var removeResult = this.sizeFilterValue.filter(function (e) { return e !== value });
-      this.sizeFilterValue = removeResult;
+      var removeResult = this.filterSizeValue.filter(function (e) { return e !== value });
+      this.filterSizeValue = removeResult;
     }
-    this.setQueryParams();
-  }
-
-  searchFilter(event) {
-    this.searchFilterValue = event.target.value;
-    this.setQueryParams();
-  }
-
-  categoryFilter(value) {
-    this.categoryFitlerValue = value;
     this.setQueryParams();
   }
 
   setQueryParams() {
     var params = {}
 
-    if (this.searchFilterValue) {
-      params['search'] = this.searchFilterValue;
+    if (this.filterSearchValue) {
+      params['search'] = this.filterSearchValue;
     }
 
-    if (this.categoryFitlerValue) {
-      params['category'] = this.categoryFitlerValue;
+    if (this.filterCategoryValue) {
+      params['category'] = this.filterCategoryValue;
     }
 
-    if (this.sizeFilterValue.length > 0) {
-      var sizeParams = this.sizeFilterValue.join("-");
+    if (this.filterSizeValue.length > 0) {
+      var sizeParams = this.filterSizeValue.join("-");
       params['size'] = sizeParams;
     }
 
@@ -82,9 +82,9 @@ export class ProductsComponent implements OnInit {
 
   filterData() {
     this.data = this.allData.filter(p => {
-      var search = this.searchFilterValue ? p.productName.includes(this.searchFilterValue) : p.productName;
-      var size = this.sizeFilterValue.length > 0 ? this.sizeFilterValue.indexOf(p.size) >= 0 : p.size;
-      var category = this.categoryFitlerValue ? p.category == this.categoryFitlerValue : p.category;
+      var search = this.filterSearchValue ? p.productName.includes(this.filterSearchValue) : p.productName;
+      var size = this.filterSizeValue.length > 0 ? this.filterSizeValue.indexOf(p.size) >= 0 : p.size;
+      var category = this.filterCategoryValue ? p.category == this.filterCategoryValue : p.category;
       return search && size && category;
     })
   }
