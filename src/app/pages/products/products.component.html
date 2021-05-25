@@ -28,7 +28,7 @@
             </div>
             <div class="inp-filter">
                 <div class="form-group">
-                    <input type="text" (keyup)="filtersearch($event)" name="search" class="form-control" placeholder="Search Product..">
+                    <input type="text" (keyup)="filtersearch($event)" [(ngModel)]="filterSearchValue" name="search" class="form-control" placeholder="Search Product..">
                 </div>
             </div>
             <div class="conten-filter">
@@ -40,7 +40,7 @@
                 <label (click)="filterCategory('woman')" class="list-category">Woman</label>
             </div>
             <div class="conten-filter">
-                <h6 class="label-filter">Size</h6>
+                <h6 class="label-filter">Size </h6>
                 <div class="checkbox">
                     <input (click)="filterSize(33)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">33</span>
                     <input (click)="filterSize(34)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">34</span>

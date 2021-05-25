@@ -39,11 +39,7 @@ export class ProductsDetailComponent implements OnInit {
     this.detailService.getProducts().subscribe(
       result => {
         this.data = result;
-        this.data = (this.slug) ?
-          this.data.filter(p => {
-            return p.slug === this.slug;
-          }) : this.data;
-        console.log(this.data);
+        this.data = (this.slug) ?this.data.filter(p => { return p.slug === this.slug;}) : this.data;
         this.name = this.data[0].productName;
         this.price = this.data[0].price;
         this.stock = this.data[0].stock;

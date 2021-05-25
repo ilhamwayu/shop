@@ -34,6 +34,8 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+    this.filterreload();
+
   }
 
   filtersearch(event) {
@@ -82,7 +84,8 @@ export class ProductsComponent implements OnInit {
       var size = this.filterSizeValue.length > 0 ? this.filterSizeValue.indexOf(p.size) >= 0 : p.size;
       var category = this.filterCategoryValue ? p.category == this.filterCategoryValue : p.category;
       return search && size && category;
-    })
+    });
+
   }
 
   detail(slug) {
@@ -99,6 +102,18 @@ export class ProductsComponent implements OnInit {
         alert("load data failed");
       }
     );
+
+  }
+
+  filterreload() {
+    this.routing.queryParams.subscribe(
+      result => {
+        console.log(result);
+        this.filterCategoryValue = result.category;
+        this.filterSearchValue = result.search;
+        this.filterSizeValue.includes(result.size);
+      });
+      this.filterData();
   }
 
 }
