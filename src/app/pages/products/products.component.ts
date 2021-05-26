@@ -35,7 +35,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.filterreload();
-
   }
 
   filtersearch(event) {
@@ -108,12 +107,13 @@ export class ProductsComponent implements OnInit {
   filterreload() {
     this.routing.queryParams.subscribe(
       result => {
-        console.log(result);
         this.filterCategoryValue = result.category;
         this.filterSearchValue = result.search;
-        this.filterSizeValue.includes(result.size);
+        this.filterSizeValue = result.size.split("-").map(Number);
       });
+    setTimeout(() => {
       this.filterData();
+    }, 200)
   }
 
 }

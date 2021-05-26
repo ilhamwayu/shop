@@ -33,23 +33,23 @@
             </div>
             <div class="conten-filter">
                 <h6 class="label-filter">Category</h6>
-                <label (click)="filterCategory('')" class="list-category">All</label>
-                <label (click)="filterCategory('party')"  class="list-category">Party</label>
-                <label (click)="filterCategory('natural')" class="list-category">Natural</label>
-                <label (click)="filterCategory('cute alay banget')" class="list-category">Cute Alay Banget</label>
-                <label (click)="filterCategory('woman')" class="list-category">Woman</label>
+                <label (click)="filterCategory('')" class="list-category" [ngClass]="{'list-category-active': filterCategoryValue == null}">All</label>
+                <label (click)="filterCategory('party')"  class="list-category" [ngClass]="{'list-category-active': filterCategoryValue == 'party'}">Party</label>
+                <label (click)="filterCategory('natural')" class="list-category" [ngClass]="{'list-category-active': filterCategoryValue == 'natural'}">Natural</label>
+                <label (click)="filterCategory('cute alay banget')" class="list-category" [ngClass]="{'list-category-active': filterCategoryValue == 'cute alay banget'}">Cute Alay Banget</label>
+                <label (click)="filterCategory('woman')" class="list-category" [ngClass]="{'list-category-active': filterCategoryValue == 'woman'}">Woman</label>
             </div>
             <div class="conten-filter">
                 <h6 class="label-filter">Size </h6>
                 <div class="checkbox">
-                    <input (click)="filterSize(33)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">33</span>
-                    <input (click)="filterSize(34)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">34</span>
-                    <input (click)="filterSize(35)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">35</span>
+                    <input (click)="filterSize(33)" type="checkbox" class="inp-checkbox" [checked]="filterSizeValue.indexOf(33) >= 0 ? true:false"><span class="number-checkbox">33</span>
+                    <input (click)="filterSize(34)" type="checkbox" class="inp-checkbox" [checked]="filterSizeValue.indexOf(34) >= 0 ? true:false"><span class="number-checkbox">34</span>
+                    <input (click)="filterSize(35)" type="checkbox" class="inp-checkbox" [checked]="filterSizeValue.indexOf(35) >= 0 ? true:false"><span class="number-checkbox">35</span>
                 </div>
                 <div class="checkbox">
-                    <input (click)="filterSize(36)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">36</span>
-                    <input (click)="filterSize(37)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">37</span>
-                    <input (click)="filterSize(38)" type="checkbox" class="inp-checkbox"><span class="number-checkbox">38</span>
+                    <input (click)="filterSize(36)" type="checkbox" class="inp-checkbox" [checked]="filterSizeValue.indexOf(36) >= 0 ? true:false"><span class="number-checkbox">36</span>
+                    <input (click)="filterSize(37)" type="checkbox" class="inp-checkbox" [checked]="filterSizeValue.indexOf(37) >= 0 ? true:false"><span class="number-checkbox">37</span>
+                    <input (click)="filterSize(38)" type="checkbox" class="inp-checkbox" [checked]="filterSizeValue.indexOf(38) >= 0 ? true:false"><span class="number-checkbox">38</span>
                 </div>
             </div>
         </div>
